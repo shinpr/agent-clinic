@@ -57,8 +57,6 @@ The argument is plain language, not a fixed syntax. Installed in either host, it
 
 By default the report covers every problem it can back with evidence. If you want it limited to the problems that contributed to the failure, say so. "Just the root causes" is enough.
 
-Session Doctor does not send your transcript anywhere on its own. It only uses the agent you are already running.
-
 ## What it will not do
 
 It does not review your code or rewrite anything. It reports the diagnosis and leaves the fixes to you.
