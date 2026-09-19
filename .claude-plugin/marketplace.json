@@ -1,0 +1,27 @@
+{
+  "name": "agent-clinic",
+  "owner": {
+    "name": "Shinsuke Kagawa"
+  },
+  "description": "Diagnostic plugins for Claude Code and Codex sessions.",
+  "plugins": [
+    {
+      "name": "session-doctor",
+      "source": "./",
+      "description": "Diagnose one Claude Code or Codex session across user utterances, work management, and the instruction environment.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Shinsuke Kagawa",
+        "url": "https://github.com/shinpr"
+      },
+      "category": "Developer Tools",
+      "tags": [
+        "diagnostics",
+        "session",
+        "retrospective",
+        "claude",
+        "codex"
+      ]
+    }
+  ]
+}

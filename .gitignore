@@ -1,0 +1,4 @@
+tmp/
+.claude/
+.DS_Store
+*.log

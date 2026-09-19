@@ -1,0 +1,20 @@
+{
+  "name": "agent-clinic",
+  "interface": {
+    "displayName": "Agent Clinic"
+  },
+  "plugins": [
+    {
+      "name": "session-doctor",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

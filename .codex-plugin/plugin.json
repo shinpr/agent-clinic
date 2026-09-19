@@ -1,0 +1,33 @@
+{
+  "name": "session-doctor",
+  "version": "0.1.0",
+  "description": "Diagnose one Claude Code or Codex session across user utterances, work management, and the instruction environment.",
+  "author": {
+    "name": "Shinsuke Kagawa",
+    "url": "https://github.com/shinpr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "diagnostics",
+    "session",
+    "retrospective",
+    "claude",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Session Doctor",
+    "shortDescription": "Diagnose a past agent session and report what to fix.",
+    "longDescription": "Session Doctor reads one saved Claude Code or Codex session and inspects it along three axes: how the user asked for work, how the work was planned and tracked, and which skills and instruction files were in effect. It reports the defects it can prove, where they are, and the smallest change that would fix them.",
+    "developerName": "Shinsuke Kagawa",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Diagnose my last session.",
+      "Diagnose session <session-id>.",
+      "Diagnose this session transcript and tell me what to change."
+    ]
+  }
+}
