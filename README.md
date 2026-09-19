@@ -34,17 +34,12 @@ Start a new session afterwards so the skill is loaded.
 
 ## Use
 
-Claude Code:
-
 ```text
-/recipe-diagnose
+/recipe-diagnose   # Claude Code
+$recipe-diagnose   # Codex
 ```
 
-Codex:
-
-```text
-$recipe-diagnose
-```
+The examples below use the Claude Code form.
 
 The place to start is the session that just went sideways. Run it with no argument: it finds the most recent session for the current repository and asks you to confirm it before analysing. You can also name one directly:
 
@@ -56,6 +51,19 @@ The place to start is the session that just went sideways. Run it with no argume
 The argument is plain language, not a fixed syntax. Installed in either host, it reads both Claude Code and Codex transcripts.
 
 By default the report covers every problem it can back with evidence. If you want it limited to the problems that contributed to the failure, say so. "Just the root causes" is enough.
+
+### Picking the session
+
+You rarely need an ID. Tell it roughly when the session ran and what you were working on, and it searches the saved transcripts for a match. It confirms with you before it starts:
+
+```text
+/recipe-diagnose the session last night where the test suite kept half-passing
+```
+
+When you already know which session you want:
+
+- **Read its ID**: open the session and run `/status`. Both CLIs show the ID, as do the Code tab in the Claude desktop app and Codex in the ChatGPT app. Copy it, then start Session Doctor in a different session and give it that ID.
+- **Drag it in**: in the ChatGPT app, switch to Codex and drag the session's title from the sidebar into the chat box. The title goes in as a chip that points at that session.
 
 ## What it will not do
 
