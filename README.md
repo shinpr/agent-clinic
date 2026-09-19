@@ -8,9 +8,9 @@ It looks back at one of your past Claude Code or Codex sessions and tells you wh
 
 Sessions go wrong for boring reasons. A request with no "done" condition. A task that quietly vanished at a compaction. A skill that overrode one of your own rules. Session Doctor reads the saved transcript and looks for problems like these:
 
-- **What you asked for** — where the request left the outcome, scope, or "done" undefined.
-- **How the work was run** — work the agent started but never finished, state lost during compaction, subagent results that were never checked.
-- **What was instructing the agent** — your skills, `AGENTS.md` and `CLAUDE.md` as they actually combined in that session, including rules that conflict or duplicate each other when they apply at the same time.
+- **What you asked for**: where the request left the outcome, scope, or "done" undefined.
+- **How the work was run**: work the agent started but never finished, state lost during compaction, subagent results that were never checked.
+- **What was instructing the agent**: your skills, `AGENTS.md` and `CLAUDE.md` as they actually combined in that session, including rules that conflict or duplicate each other when they apply at the same time.
 
 The three passes run separately, so a hunch from the first does not bias the other two. The report shows what went wrong, where it happened, and the smallest change likely to prevent it next time.
 
@@ -55,7 +55,7 @@ The place to start is the session that just went sideways. Run it with no argume
 
 The argument is plain language, not a fixed syntax. Installed in either host, it reads both Claude Code and Codex transcripts.
 
-By default the report covers every problem it can back with evidence. Ask for causes only — "just the root causes" is enough — if you want it limited to the problems that contributed to the failure.
+By default the report covers every problem it can back with evidence. If you want it limited to the problems that contributed to the failure, say so. "Just the root causes" is enough.
 
 Session Doctor does not send your transcript anywhere on its own. It only uses the agent you are already running.
 
