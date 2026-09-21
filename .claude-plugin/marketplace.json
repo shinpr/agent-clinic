@@ -3,13 +3,13 @@
   "owner": {
     "name": "Shinsuke Kagawa"
   },
-  "description": "Diagnostic plugins for Claude Code and Codex sessions.",
+  "description": "Diagnostic plugins for agent-assisted development: the sessions agents run, and the changes they propose.",
   "plugins": [
     {
       "name": "session-doctor",
-      "source": "./",
+      "source": "./session-doctor",
       "description": "Diagnose one Claude Code or Codex session across user utterances, work management, and the instruction environment.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Shinsuke Kagawa",
         "url": "https://github.com/shinpr"
@@ -21,7 +21,28 @@
         "retrospective",
         "claude",
         "codex"
-      ]
+      ],
+      "displayName": "Session Doctor"
+    },
+    {
+      "name": "outcome-doctor",
+      "source": "./outcome-doctor",
+      "description": "Judge whether a proposed design, decision, or code change delivers more or less than the stated outcome requires.",
+      "version": "0.2.0",
+      "author": {
+        "name": "Shinsuke Kagawa",
+        "url": "https://github.com/shinpr"
+      },
+      "category": "Developer Tools",
+      "tags": [
+        "diagnostics",
+        "review",
+        "scope",
+        "over-engineering",
+        "design",
+        "claude"
+      ],
+      "displayName": "Outcome Doctor"
     }
   ]
 }
