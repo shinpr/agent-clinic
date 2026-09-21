@@ -4,10 +4,10 @@
 
 Diagnostics for agent-assisted work. Each one is a separate plugin, and you install only the ones you want.
 
-| Plugin | Use it when | Needs |
-| --- | --- | --- |
-| **Session Doctor** | A session went badly and you want to know why. | Nothing |
-| **Outcome Doctor** | A plan, design, or diff may be more or less than the job needs, and you want a second opinion before you build it. | A TypeSafe API key |
+| Plugin | What it is for | How it runs | Needs |
+| --- | --- | --- | --- |
+| **Session Doctor** | A session went badly and you want to know why. | You ask for it | Nothing |
+| **Outcome Doctor** | A plan, design, or diff may be more or less than the job needs. | On its own, while your agent works | A TypeSafe API key |
 
 Both report what they found and leave the fixes to you. Neither one edits your code.
 
@@ -82,13 +82,15 @@ When you already know which session you want:
 
 Agents write code that is technically correct and larger than the job. So do we. The version check nobody asked for, the cache for a file that gets read once, the config flag with no caller. It all looks defensible while you are writing it, and a reviewer who calls it out is arguing taste against taste.
 
-Outcome Doctor judges against the outcome you stated. Tell it what you want the thing to do, hand it the plan or the diff, and it comes back with one of five readings per decision: sufficient, excessive, insufficient, mixed, or not enough evidence to say. Work that falls short gets reported as readily as work that overshoots, which is the part that "keep it minimal" advice cannot do.
+Outcome Doctor judges against the outcome you stated. It runs while your agent is deciding how to build something, not after you notice a problem.
 
-Each verdict carries no authority on its own. It arrives with the evidence behind it, and you decide whether that evidence holds.
+Each decision comes back as one of five readings: sufficient, excessive, insufficient, mixed, or not enough evidence to say. Work that falls short gets reported as readily as work that overshoots, which is the part that "keep it minimal" advice cannot do.
+
+A reading is something to check, not a ruling. It arrives with the evidence behind it, and you decide whether that evidence holds.
 
 ### Setup
 
-Classification runs on a model from [TypeSafe AI](https://typesafe.ai/), so this one needs an API key of your own. What leaves your machine is the case you are asking about: the outcome, the facts you supplied, and the change being judged. See [TypeSafe's pricing](https://typesafe.ai/) for what a run costs.
+Classification runs on a model from [TypeSafe AI](https://typesafe.ai/), so this one needs an API key of your own. A check sends the case being judged: the outcome, the facts your agent gathered, and the change under consideration. Each one costs a fraction of a cent. Your agent names Outcome Doctor whenever it used one, so you can see what you are paying for, and [TypeSafe's pricing](https://typesafe.ai/) has the current rates.
 
 Create a key in the [TypeSafe dashboard](https://console.typesafe.ai/), then export it:
 
@@ -108,19 +110,29 @@ codex plugin add outcome-doctor@agent-clinic
 
 Start a new session afterwards so the skill is loaded.
 
-### Use
+### While you work
+
+You will usually not run this yourself. Ask your agent to plan or implement a change, and the check happens inside that work, before the code exists.
+
+It looks for decisions you could go either way on: a dependency, a config flag, a cache, a retry policy, an error path. Each one goes to the model with the outcome and the facts your agent collected, and what comes back shapes the proposal you are shown. The parts that did not survive are named, with the reading that sank them, so a quiet trim is not something you have to catch.
+
+It stays out of the way when the work has no such decision in it, and it misses some that it should catch, mostly when a change looks like a routine edit. When you want the check for certain, ask for it.
+
+To stop it, disable or uninstall the plugin. There is no throttle.
+
+### Run it yourself
 
 ```text
-/recipe-rightsize   # Claude Code
-$recipe-rightsize   # Codex
+/rightsize   # Claude Code
+$rightsize   # Codex
 ```
 
 Point it at whatever you are about to accept or build:
 
 ```text
-/recipe-rightsize is this design doc bigger than it needs to be? docs/design/search.md
-/recipe-rightsize review says to add a version preflight. worth it?
-/recipe-rightsize judge this diff against "the CLI reports failures with the exit code"
+/rightsize is this design doc bigger than it needs to be? docs/design/search.md
+/rightsize review says to add a version preflight. worth it?
+/rightsize judge this diff against "the CLI reports failures with the exit code"
 ```
 
 Say what you want out of the change, in your own words. Everything gets measured against it, so a vague goal gives you a vague answer. Leave it out and it will ask.

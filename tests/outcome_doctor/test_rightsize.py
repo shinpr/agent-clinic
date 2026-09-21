@@ -1,6 +1,6 @@
 import contextlib, importlib.util, io, json, pathlib, sys, unittest
 from unittest.mock import patch
-path = pathlib.Path(__file__).resolve().parents[2] / 'outcome-doctor' / 'skills' / 'recipe-rightsize' / 'scripts' / 'rightsize.py'
+path = pathlib.Path(__file__).resolve().parents[2] / 'outcome-doctor' / 'skills' / 'rightsize' / 'scripts' / 'rightsize.py'
 spec = importlib.util.spec_from_file_location('rightsize', path)
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)

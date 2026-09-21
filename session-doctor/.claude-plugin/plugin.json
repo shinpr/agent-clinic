@@ -1,7 +1,7 @@
 {
   "name": "session-doctor",
   "description": "Diagnose one Claude Code or Codex session across user utterances, work management, and the instruction environment.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Shinsuke Kagawa",
     "url": "https://github.com/shinpr"
