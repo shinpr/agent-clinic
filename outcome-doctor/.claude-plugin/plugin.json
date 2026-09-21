@@ -1,0 +1,18 @@
+{
+  "name": "outcome-doctor",
+  "description": "Judge whether a proposed design, decision, or code change delivers more or less than the stated outcome requires.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Shinsuke Kagawa",
+    "url": "https://github.com/shinpr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "diagnostics",
+    "review",
+    "scope",
+    "over-engineering",
+    "design",
+    "claude"
+  ]
+}

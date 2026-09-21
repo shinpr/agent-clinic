@@ -1,0 +1,35 @@
+{
+  "name": "outcome-doctor",
+  "version": "0.2.0",
+  "description": "Judge whether a proposed design, decision, or code change delivers more or less than the stated outcome requires.",
+  "author": {
+    "name": "Shinsuke Kagawa",
+    "url": "https://github.com/shinpr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "diagnostics",
+    "review",
+    "scope",
+    "over-engineering",
+    "design",
+    "claude",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Outcome Doctor",
+    "shortDescription": "Judge a change against the outcome it is for.",
+    "longDescription": "Outcome Doctor takes the outcome you stated, the facts around it, and a proposed plan, design, or diff, then classifies each decision as sufficient, excessive, insufficient, mixed, or unsupported by the evidence. It reports work that falls short as readily as work that overshoots, with the source each reading rests on. Classification runs through TypeSafe AI and needs your own API key.",
+    "developerName": "Shinsuke Kagawa",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Is this design bigger than it needs to be?",
+      "The review says to add a version preflight. Is it worth it?",
+      "Judge this diff against the outcome I asked for."
+    ]
+  }
+}
