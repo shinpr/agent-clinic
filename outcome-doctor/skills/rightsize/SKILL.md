@@ -1,13 +1,18 @@
 ---
-name: recipe-rightsize
-description: "Evaluates fit to user outcomes. Use when assessing plans, designs, implementations, or review responses."
-disable-model-invocation: true
+name: rightsize
+description: "Evaluates implementation decisions against the user's stated outcome. Use when a plan, design, code change, dependency, or code-review response is being chosen or adopted, including when nobody asked for a review."
 argument-hint: "[the change, design, or review response to judge]"
 ---
 
 # Outcome Doctor
 
 Assess every proposed user-facing choice, behavior change, dependency, and work obligation within the requested scope. Identify the smallest sufficient way to achieve the user's outcome using source evidence and Jev.
+
+## When this applies
+
+Load on any decision to adopt or change an implementation approach, and treat an explicit request for an assessment as one occasion among others rather than the condition for loading. Reading this file is the whole cost of loading; the priced step is the classification below.
+
+Classify once the work has a user-grounded outcome and at least one locatable proposed change. While the conversation holds neither, carry on with the current work and classify when they appear.
 
 ## Prerequisites
 
@@ -50,6 +55,10 @@ Resolve the script path from this SKILL.md. Start the command with outbound netw
 
 ## Result
 
-Answer the user's question with each comparison's source, assessment, required behavior preserved or lost, avoidable work, and separately attributed Jev choice and probabilities as the script returned them. Match model signals to the exact submitted decisions; explain any disagreement through the sources. Identify material unassessed areas and decision-changing gaps so coverage matches the inspected evidence.
+Each assessment is one input to the decision in front of you, weighed against the source evidence that produced it. Act on it inside the authorization you already hold: drop the part of your own proposal the outcome does not justify, cover the established requirement it leaves unmet, and bring the decision to the user when either step would change a requirement or exceed that authorization. Where the sources contradict the classification, follow the sources and say which ones.
 
-Retention, subtraction, and reuse are valid results. Finish at the requested assessment; implementation follows existing user authorization.
+Report each comparison's source, assessment, required behavior preserved or lost, avoidable work, and separately attributed Jev choice and probabilities as the script returned them. Match model signals to the exact submitted decisions; explain any disagreement through the sources. Identify material unassessed areas and decision-changing gaps so coverage matches the inspected evidence.
+
+When the assessment reaches the user, name Outcome Doctor as its source and give the classification and probabilities alongside your own reading, so the user weighs the same evidence you did.
+
+Retention, subtraction, and reuse are valid results.

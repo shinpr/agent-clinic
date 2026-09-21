@@ -1,0 +1,7 @@
+interface:
+  display_name: "Outcome Doctor"
+  short_description: "Judge whether a change is the smallest sufficient way to reach the stated outcome"
+  default_prompt: "Use Outcome Doctor when choosing or adopting a plan, design, code change, dependency, or code-review response, to check it against the outcome the user asked for."
+
+policy:
+  allow_implicit_invocation: true

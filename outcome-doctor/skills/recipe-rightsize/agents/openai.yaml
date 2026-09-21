@@ -1,7 +1,0 @@
-interface:
-  display_name: "Outcome Doctor"
-  short_description: "Judge whether a change is the smallest sufficient way to reach the stated outcome"
-  default_prompt: "Use $recipe-rightsize to assess a proposed plan, design, implementation, or review response against the outcome the user asked for. Ground the outcome and the facts in the user's own material, compare each decision with a concrete alternative, and report what the outcome does not justify alongside what it requires."
-
-policy:
-  allow_implicit_invocation: false
