@@ -1,6 +1,6 @@
 {
   "name": "session-doctor",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Diagnose one Claude Code or Codex session across user utterances, work management, and the instruction environment.",
   "author": {
     "name": "Shinsuke Kagawa",

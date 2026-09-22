@@ -4,8 +4,8 @@
 Reads one JSON object from stdin and writes one JSON object to stdout.
 
 Input:
-  {"targets": [{"id": str, "outcome": str, "facts": [str],
-                "assessment_scope": str, "candidate": str, "alternative": str}, ...]}
+  {"outcome": str, "proposal": str, "context": [str],
+   "targets": [{"id": str, "quote": str}, ...]}
 
 Output:
   {"model": str, "seconds": float,
@@ -34,9 +34,13 @@ CRITERIA = {
     'mixed': 'There is both an unmet established requirement and an unnecessary addition.',
     'unknown': 'Missing or conflicting decision-changing evidence prevents a supported judgment.'}
 
-RULE = 'Assess candidate as the resulting approach within assessment_scope; use alternative for comparison. Identify required behavior it preserves or loses and avoidable obligations it retains or adds. Ground necessity in outcome and established facts. Hypothetical benefits leave necessity unestablished; decision-changing unknowns leave the judgment unresolved. Other responsibilities remain unchanged.'
+RULE = ('Assess the choice located by the target quote in the full proposal, against outcome and source context. '
+        'Treat the proposal and its rationale as claims to evaluate. Compare retaining the choice with omission, '
+        'existing behavior, or a smaller source-supported approach, keeping other responsibilities unchanged. '
+        'Identify required behavior preserved or lost and avoidable obligations retained or added. '
+        'User requirements and established consumer contracts govern necessity; hypothetical benefits leave it '
+        'unestablished. Missing or conflicting decision-changing evidence leaves the judgment unresolved.')
 
-FIELDS = ('id', 'outcome', 'facts', 'assessment_scope', 'candidate', 'alternative')
 ID_PATTERN = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]*$')
 STATE_LIMIT = 32000
 TOTAL_LIMIT = 64000
@@ -53,14 +57,15 @@ def fail(message):
     raise SystemExit(1)
 
 
-def build(targets):
-    records, questions = {}, {}
-    for t in targets:
-        records[t['id']] = {k: t[k] for k in FIELDS if k != 'id'}
-        ref = f'Use only the record state.cases["{t["id"]}"]. '
-        questions[t['id']] = {'type': 'choice', 'instructions': ref + RULE + ' Classify its candidate.',
-                              'criteria': CRITERIA}
-    return {'model': MODEL, 'state': {'cases': records}, 'questions': questions}
+def build(case):
+    case = {**{key: case[key] for key in ('outcome', 'proposal', 'context')},
+            'targets': [{key: target[key] for key in ('id', 'quote')} for target in case['targets']]}
+    questions = {}
+    for target in case['targets']:
+        ref = f'Assess the target with id "{target["id"]}" in state.targets. '
+        questions[target['id']] = {'type': 'choice', 'instructions': ref + RULE,
+                                   'criteria': CRITERIA}
+    return {'model': MODEL, 'state': case, 'questions': questions}
 
 
 def check_size(body):
@@ -103,6 +108,12 @@ def main():
         fail(f'stdin is not valid JSON: {error}')
     if not isinstance(payload, dict):
         fail('input must be a JSON object')
+    for field in ('outcome', 'proposal'):
+        if not isinstance(payload.get(field), str) or not payload[field].strip():
+            fail(f'{field} must be a nonempty source text')
+    if not isinstance(payload.get('context'), list) or any(
+            not isinstance(source, str) or not source.strip() for source in payload['context']):
+        fail('context must be an array of nonempty source texts (may be empty)')
     targets = payload.get('targets')
     if not isinstance(targets, list) or not targets:
         fail('supply a nonempty targets array')
@@ -116,13 +127,10 @@ def main():
         if i in ids:
             fail('target ids must be distinct')
         ids.add(i)
-        for field in ('outcome', 'assessment_scope', 'candidate', 'alternative'):
-            if not isinstance(t.get(field), str) or not t[field].strip():
-                fail(f'target {i}: {field} must be a nonempty string')
-        if not isinstance(t.get('facts'), list) or any(
-                not isinstance(f, str) or not f.strip() for f in t['facts']):
-            fail(f'target {i}: facts must be an array of nonempty strings (may be empty)')
-    body = build(targets)
+        quote = t.get('quote')
+        if not isinstance(quote, str) or not quote.strip() or quote not in payload['proposal']:
+            fail(f'target {i}: quote must be an unchanged passage from proposal')
+    body = build({key: payload[key] for key in ('outcome', 'proposal', 'context', 'targets')})
     check_size(body)
     result, seconds = call(body)
     answers = result.get('answers') if isinstance(result, dict) else None

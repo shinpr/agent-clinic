@@ -1,24 +1,18 @@
 # Input Contract
 
-Send one JSON object with a nonempty `targets` array:
+Send the case once, with targets locating its independently retainable choices:
 
 ```json
 {
-  "targets": [{
-    "id": "decision-1",
-    "outcome": "Required observable results and explicit obligations or prohibitions",
-    "facts": ["Source-attributed observations, established consumer needs, or explicitly identified unknowns"],
-    "assessment_scope": "Responsibility and coupled changes being judged",
-    "candidate": "Locatable proposed behavior and its effect",
-    "alternative": "Concrete comparison approach and its effect on the same requirement"
-  }]
+  "outcome": "User's own words stating the required outcome and constraints",
+  "proposal": "Proposed choices being assessed",
+  "context": ["Source location followed by the original relevant document or section"],
+  "targets": [{"id": "decision-1", "quote": "Unchanged passage from proposal locating this choice"}]
 }
 ```
 
-Each target compares two approaches to the same responsibility. Use the actual default or existing mechanism when available; establish the effect of omission from the source. Identify uncertain effects in facts. Other responsibilities remain unchanged. The outcome contains what must hold. Put existing mechanisms, proposed means, and statements that a capability is unrequested in facts or candidate. Distinguish a capability being unrequested from the user forbidding it. Keep evaluator labels separate from the request. Facts establish current behavior and consumers; hypothetical benefits remain possibilities in candidate or alternative. Bound implementation claims to inspected code and consumers.
+Use source statements as the units of extraction, keeping conditions and exceptions attached to the behavior they qualify. Retain what can change the comparison: the required outcome, each choice's changed and retained behavior and decision-changing unknowns. Preserve those elements together; omit material only when its removal leaves the comparison unchanged. Keep the user's requirements in `outcome`, and the author's interpretations and rationale attributed to `proposal`. For `context`, use the existing documents or complete sections establishing the affected behavior and governing requirements. These sources are shared by every target; Jev evaluates the choices and their smaller alternatives against the same record. Read file content into the producer and serialize it directly. Jev receives the text, so a path alone supplies no evidence.
 
-IDs are unique and match `[A-Za-z0-9][A-Za-z0-9_-]*`. The four text fields are nonempty strings. `facts` is an array of nonempty strings and may be empty.
+IDs are unique and match `[A-Za-z0-9][A-Za-z0-9_-]*`. `outcome`, `proposal`, and each `quote` are nonempty strings. Each quote must occur in `proposal`; it locates the choice within its full context. `context` is an array of nonempty strings and may be empty.
 
-## If the request is too large
-
-The script estimates 64k tokens per request and 32k for state plus the longest question. The estimate is heuristic; the API can still reject a request within it. Condense to decision-relevant evidence, then split into the fewest groups needed while retaining each target's evidence and coupled changes.
+If the script or API reports an input-size error, split by assessed responsibility, keeping the original passages and governing context needed for each group.
