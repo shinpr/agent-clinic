@@ -39,26 +39,18 @@ Preserve user-required outcomes, explicit constraints, and real consumer contrac
 
 ## Prepare and classify
 
-Build `targets` from the source's decision lists and proposed changes, in source order. Include choices that appear necessary. Use one record per independently retainable choice, keeping coupled behavior as context. Compare each with omission, reuse, or fixed internal behavior. Check that every listed choice is represented before calling Jev.
+Build `targets` from the source's decision lists and proposed changes, in source order. Include choices that appear necessary. Use one target quote per independently retainable choice; the full proposal and source context retain coupled behavior. Check that every listed choice is represented before calling Jev.
 
-Prepare records using [references/input-contract.md](references/input-contract.md). Ground requirements in the user's outcome and actual consumers; proposed specifications supply the candidate behavior. For implementation, inspect relevant callers and existing mechanisms. Distinguish observed needs from hypothetical benefits, retaining their sources and uncertainty; ask only when the outcome or candidate remains unresolved. Account for that scope through assessed comparisons or specific evidence gaps.
+Prepare the source record using [references/input-contract.md](references/input-contract.md). In Claude, first read and follow the mandatory [Claude handoff contract](references/claude.md). For implementation, inspect relevant callers and existing mechanisms. Ask only when the outcome or candidate remains unresolved.
 
-Submit the decisions of one case together:
-
-```sh
-"<skill-directory>/scripts/rightsize.py" <<'JSON'
-{"targets": [ ... ]}
-JSON
-```
+With each source choice represented, use an inline producer to copy the source texts, stream the case JSON to `<skill-directory>/scripts/rightsize.py` through stdin, and consume its stdout.
 
 Resolve the script path from this SKILL.md. Start the command with outbound network access already granted: the request reaches `api.typesafe.ai`, a host that sandboxes commands withholds that by default, and the resulting name-resolution failure reads like a service outage. Correct and rerun an input when new evidence changes what it describes. With an accurate input, resolve the assessment from source evidence and retain the returned Jev signal. An API failure leaves the classification incomplete.
 
 ## Result
 
-Each assessment is one input to the decision in front of you, weighed against the source evidence that produced it. Act on it inside the authorization you already hold: drop the part of your own proposal the outcome does not justify, cover the established requirement it leaves unmet, and bring the decision to the user when either step would change a requirement or exceed that authorization. Where the sources contradict the classification, follow the sources and say which ones.
+Jev returns a classification and scores conditional on the submitted record. Act on it inside the authorization you already hold: drop the part of your own proposal the outcome does not justify, cover the established requirement it leaves unmet, and bring the decision to the user when either step would change a requirement or exceed that authorization. Where the sources contradict the classification, follow the sources and say which ones.
 
-Report each comparison's source, assessment, required behavior preserved or lost, avoidable work, and separately attributed Jev choice and probabilities as the script returned them. Match model signals to the exact submitted decisions; explain any disagreement through the sources. Identify material unassessed areas and decision-changing gaps so coverage matches the inspected evidence.
-
-When the assessment reaches the user, name Outcome Doctor as its source and give the classification and probabilities alongside your own reading, so the user weighs the same evidence you did.
+For each comparison, report your disposition and its decisive source evidence alongside Jev's returned choice and probabilities, attributed to Outcome Doctor. Explain disagreements and material evidence gaps from the sources; Jev's scores are classification signals, while reasons are your source-grounded interpretation.
 
 Retention, subtraction, and reuse are valid results.
