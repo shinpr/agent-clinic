@@ -83,7 +83,8 @@ def call(body):
     if not key:
         fail('TYPESAFE_API_KEY is absent from the environment')
     data = json.dumps(body, ensure_ascii=False).encode()
-    headers = {'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}
+    headers = {'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json',
+               'User-Agent': 'outcome-doctor-rightsize/1.0'}
     started = time.monotonic()
     for attempt in range(4):
         try:
