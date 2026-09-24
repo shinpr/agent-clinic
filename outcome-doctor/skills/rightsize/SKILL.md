@@ -49,7 +49,7 @@ Resolve the script path from this SKILL.md. Start the command with outbound netw
 
 ## Result
 
-Jev returns a classification and scores conditional on the submitted record. Act on it inside the authorization you already hold: drop the part of your own proposal the outcome does not justify, cover the established requirement it leaves unmet, and bring the decision to the user when either step would change a requirement or exceed that authorization. Where the sources contradict the classification, follow the sources and say which ones.
+Jev returns a classification and scores conditional on the submitted record. Act on it inside the authorization you already hold: drop the part of your own proposal the outcome does not justify, cover the established requirement it leaves unmet, and bring the decision to the user when either step would change a requirement or exceed that authorization. Retain a choice on the source requirement it serves; a user's go-ahead on your proposal authorized proceeding with it and supplies no such requirement, so report those choices as your proposals. Where the sources contradict the classification, follow the sources and say which ones.
 
 For each comparison, report your disposition and its decisive source evidence alongside Jev's returned choice and probabilities, attributed to Outcome Doctor. Explain disagreements and material evidence gaps from the sources; Jev's scores are classification signals, while reasons are your source-grounded interpretation.
 

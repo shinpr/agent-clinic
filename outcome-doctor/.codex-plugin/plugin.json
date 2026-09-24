@@ -1,6 +1,6 @@
 {
   "name": "outcome-doctor",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Judge whether a proposed design, decision, or code change delivers more or less than the stated outcome requires.",
   "author": {
     "name": "Shinsuke Kagawa",
