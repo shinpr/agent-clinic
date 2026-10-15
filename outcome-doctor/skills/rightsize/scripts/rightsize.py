@@ -25,7 +25,7 @@ import urllib.error
 import urllib.request
 
 ENDPOINT = 'https://api.typesafe.ai/v1/systemone'
-MODEL = 'jev-1.13.0'
+MODEL = 'jev-1.14.0'
 
 CRITERIA = {
     'insufficient': 'An established required outcome is not delivered, with no established unnecessary addition.',
