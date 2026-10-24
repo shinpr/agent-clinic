@@ -41,7 +41,12 @@ Preserve user-required outcomes, explicit constraints, and real consumer contrac
 
 Build `targets` from the source's decision lists and proposed changes, in source order. Include choices that appear necessary. Use one target quote per independently retainable choice; the full proposal and source context retain coupled behavior. Check that every listed choice is represented before calling Jev.
 
-Prepare the source record using [references/input-contract.md](references/input-contract.md). In Claude, first read and follow the mandatory [Claude handoff contract](references/claude.md). For implementation, inspect relevant callers and existing mechanisms. Ask only when the outcome or candidate remains unresolved.
+Prepare the source record using [references/input-contract.md](references/input-contract.md). Read and follow the reference for the harness currently running Outcome Doctor:
+
+- [references/claude.md](references/claude.md)
+- [references/codex.md](references/codex.md)
+
+For implementation, inspect relevant callers and existing mechanisms. Ask for clarification only when the outcome or candidate remains unresolved.
 
 With each source choice represented, use an inline producer to copy the source texts, stream the case JSON to `<skill-directory>/scripts/rightsize.py` through stdin, and consume its stdout.
 
